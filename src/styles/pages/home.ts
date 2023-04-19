@@ -1,4 +1,3 @@
-import { ComponentType } from "react";
 import { styled } from "..";
 
 export const HeroContainer = styled("section", {
@@ -9,7 +8,7 @@ export const HeroContainer = styled("section", {
   "&::before": {
     content: "",
     position: "absolute",
-    zIndex: "",
+    zIndex: -1,
     inset: 0,
     background: "url('hero_background.png') no-repeat center",
     backgroundSize: "cover",
@@ -30,8 +29,9 @@ export const HeroWrapper = styled("div", {
     minWidth: "320px",
     maxWidth: "476px",
     width: "100%",
+    height: "auto",
   },
-  "@media (min-width:1024px)": {
+  "@media (min-width:1366px)": {
     padding: "0 10rem",
     flexDirection: "row",
     alignItems: "flex-start",
@@ -60,17 +60,15 @@ export const Content = styled("div", {
 export const ItemsGroup = styled("div", {
   marginTop: "3rem",
   display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
+  gridTemplateColumns: "repeat(1, 1fr)",
   rowGap: "1.25rem",
   "@media (min-width:1024px)": {
     marginTop: "4rem",
+    gridTemplateColumns: "repeat(2, 1fr)",
+    rowGap: "1.25rem",
   },
 });
 
-interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  shape: "cart" | "delivery" | "package" | "coffee";
-}
-type ItemType = ComponentType<ItemProps>;
 export const Item = styled("div", {
   display: "flex",
   alignItems: "center",
