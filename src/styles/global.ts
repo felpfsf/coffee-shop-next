@@ -13,8 +13,13 @@ export const globalStyles = globalCss({
   "button,  input,  optgroup,  select,  textarea": {
     fontFamily: "inherit" /* 1 */,
     fontSize: "100%" /* 1 */,
-    lineHeight: 1.15 /* 1 */,
+    lineHeight: 0 /* 1 */,
     margin: 0 /* 2 */,
+    border: 0,
+  },
+  button: {
+    cursor: "pointer",
+    backgroundColor: "transparent",
   },
   body: {
     color: "$base-text",
