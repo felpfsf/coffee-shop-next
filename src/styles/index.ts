@@ -29,7 +29,7 @@ export const {
       "base-input": "#EDEDED",
       "base-card": "#F3F2F2",
 
-      backgroudn: "#FAFAFA",
+      background: "#FAFAFA",
       white: "#FFF",
     },
     fontSizes: {
@@ -44,8 +44,13 @@ export const {
       "3xl": "3rem", // 48px
     },
     fonts: {
-      ffHeader: "'Baloo 2', cursive",
-      ffText: "'Roboto', sans-serif",
+      "font-header": "'Baloo 2', cursive",
+      "font-text": "'Roboto', sans-serif",
+    },
+    media: {
+      sm: "(min-width: 640px)",
+      md: "(min-width: 768px)",
+      lg: "(min-width: 1024px)",
     },
   },
 });
