@@ -8,6 +8,7 @@ import {
   ItemsGroup,
 } from "../styles/pages/home";
 import heroIMG from "../assets/hero_image.png";
+import Products from "@/components/Products";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
           <Image src={heroIMG} alt='' />
         </HeroWrapper>
       </HeroContainer>
+      <Products />
     </main>
   );
 }
