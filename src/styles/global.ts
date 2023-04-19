@@ -10,8 +10,20 @@ export const globalStyles = globalCss({
     color: "inherit",
     textDecoration: "none",
   },
-  body:{
-    color:"$base-text",
-    fontFamily:"$ffHeader"
-  }
+  "button,  input,  optgroup,  select,  textarea": {
+    fontFamily: "inherit" /* 1 */,
+    fontSize: "100%" /* 1 */,
+    lineHeight: 1.15 /* 1 */,
+    margin: 0 /* 2 */,
+  },
+  body: {
+    color: "$base-text",
+    "-webkit-font-smoothing": "antialiased",
+    fontFamily: "$font-text",
+    background: "$background",
+  },
+  "body, input, button": {
+    fontFamily: "$font-text",
+    fontWeight: "400",
+  },
 });
