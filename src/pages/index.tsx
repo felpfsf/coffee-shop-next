@@ -53,7 +53,6 @@ export default function Home({ products }: CatalogProducts) {
           <h1>Nossos produtos</h1>
           <ProductsGrid>
             {products.map((product) => {
-              console.log(product.meta);
               return <CardProduct key={product.id} {...product} />;
             })}
           </ProductsGrid>
