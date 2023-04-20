@@ -44,16 +44,22 @@ export const Content = styled("div", {
   width: "100%",
   lineHeight: 1.3,
   h1: {
-    fontSize: "$3xl",
+    fontSize: "$2xl",
     fontWeight: "bold",
     color: "$base-title",
     fontFamily: "$font-header",
+    "@media (min-width:768px)": {
+      fontSize: "$3xl",
+    },
   },
   h2: {
-    fontSize: "$lg",
+    fontSize: "$md",
     fontWeight: "400",
     color: "$base-subtitle",
     marginTop: "1rem",
+    "@media (min-width:768px)": {
+      fontSize: "$lg",
+    },
   },
 });
 
@@ -62,17 +68,23 @@ export const ItemsGroup = styled("div", {
   display: "grid",
   gridTemplateColumns: "repeat(1, 1fr)",
   rowGap: "1.25rem",
+  "@media (min-width:768px)": {
+    gridTemplateColumns: "repeat(2, 1fr)",
+  },
   "@media (min-width:1024px)": {
     marginTop: "4rem",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    rowGap: "1.25rem",
   },
 });
 
 export const Item = styled("div", {
+  fontSize: "$sm",
   display: "flex",
   alignItems: "center",
+  lineHeight: 1,
   gap: "0.75rem",
+  "@media (min-width:768px)": {
+    fontSize: "$base",
+  },
   span: {
     padding: ".5rem",
     borderRadius: "100%",
