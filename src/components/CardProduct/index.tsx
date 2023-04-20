@@ -12,10 +12,11 @@ import {
   ShoppingCartButton,
 } from "./style";
 import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const CardProduct = (product: Product) => {
   const { addToCart } = useCart();
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState<number>(1);
 
   const decrement = () => {
     if (count > 0) {
@@ -29,7 +30,7 @@ const CardProduct = (product: Product) => {
 
   const handleAddToCart = () => {
     if (count > 0) {
-      addToCart(count);
+      addToCart(product, count);
     }
   };
   return (
@@ -46,7 +47,7 @@ const CardProduct = (product: Product) => {
         <p>{product.description}</p>
       </DetailContainer>
       <BuyContainer>
-        <strong>{product.price}</strong>
+        <strong>{formatCurrency.format(product.price)}</strong>
         <ActionsContainer>
           <div>
             <button onClick={decrement}>
