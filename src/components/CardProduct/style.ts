@@ -41,7 +41,7 @@ export const DetailContainer = styled("div", {
   flexDirection: "column",
   gap: ".5rem",
   h1: {
-    fontSize: "$lg",
+    fontSize: "$lg !important",
     fontFamily: "$font-header",
     color: "$base-subtitle",
   },
