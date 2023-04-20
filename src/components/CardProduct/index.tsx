@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image from "next/image";
 import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import {
@@ -12,6 +13,17 @@ import {
 import CoffeeImage from "../../assets/products/expresso.png";
 
 const CardProduct = () => {
+  const [count, setCount] = useState(1);
+
+  const decrement = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+
+  const increment = () => {
+    setCount(count + 1);
+  };
   return (
     <CardContainer>
       <Image src={CoffeeImage} alt={""} width={120} height={120} />
@@ -26,11 +38,11 @@ const CardProduct = () => {
         <strong>R$ 9,90</strong>
         <ActionsContainer>
           <div>
-            <button>
+            <button onClick={decrement}>
               <Minus />
             </button>
-            <span>1</span>
-            <button>
+            <span>{count}</span>
+            <button onClick={increment}>
               <Plus />
             </button>
           </div>
