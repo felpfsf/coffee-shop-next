@@ -4,7 +4,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { stripe } from "../lib/stripe";
 import { Items } from "../utils/constants";
-import { formatCurrency } from "../utils/formatCurrency";
 import CardProduct from "@/components/CardProduct";
 import heroIMG from "../assets/hero_image.png";
 import {
@@ -74,7 +73,7 @@ export const getStaticProps: GetStaticProps = async () => {
       name: product.name,
       imageUrl: product.images[0],
       description: product.description,
-      price: formatCurrency.format(unitAmount / 100),
+      price: (unitAmount / 100),
       meta: product.metadata,
     };
   });
