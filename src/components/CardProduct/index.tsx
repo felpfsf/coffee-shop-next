@@ -11,8 +11,10 @@ import {
   ShoppingCartButton,
 } from "./style";
 import CoffeeImage from "../../assets/products/expresso.png";
+import { useCart } from "../../context/CartContext";
 
 const CardProduct = () => {
+  const { addToCart } = useCart();
   const [count, setCount] = useState(1);
 
   const decrement = () => {
@@ -23,6 +25,12 @@ const CardProduct = () => {
 
   const increment = () => {
     setCount(count + 1);
+  };
+
+  const handleAddToCart = () => {
+    if (count > 0) {
+      addToCart(count);
+    }
   };
   return (
     <CardContainer>
@@ -46,7 +54,7 @@ const CardProduct = () => {
               <Plus />
             </button>
           </div>
-          <ShoppingCartButton>
+          <ShoppingCartButton onClick={handleAddToCart}>
             <ShoppingCart weight='fill' />
           </ShoppingCartButton>
         </ActionsContainer>

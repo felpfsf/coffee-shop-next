@@ -4,8 +4,11 @@ import { CartItemsCount, NavbarContainer, ShoppingCartButton } from "./style";
 import { ShoppingCart } from "@phosphor-icons/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import CartModal from "../CartModal";
+import { useCart } from "../../context/CartContext";
 
 const Navbar = () => {
+  const { cartItems } = useCart();
+  const itemsOnCart = cartItems.length;
   return (
     <NavbarContainer>
       <Image src={Logo} alt={""} />
@@ -14,7 +17,9 @@ const Navbar = () => {
           <Dialog.Trigger asChild>
             <ShoppingCartButton>
               <ShoppingCart size={22} weight='fill' />
-              <CartItemsCount>3</CartItemsCount>
+              {itemsOnCart > 0 && (
+                <CartItemsCount>{itemsOnCart}</CartItemsCount>
+              )}
             </ShoppingCartButton>
           </Dialog.Trigger>
           <CartModal />
