@@ -4,7 +4,7 @@ interface Product {
   id: string;
   name: string;
   imageUrl: string;
-  price: string;
+  price: number;
 }
 
 interface CartItem {
@@ -14,8 +14,7 @@ interface CartItem {
 
 interface CartContextProps {
   cartItems: CartItem[];
-  // addToCart: (product: Product, quantity: number) => void;
-  addToCart: (quantity: number) => void;
+  addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (product: Product) => void;
 }
 
@@ -28,9 +27,34 @@ export const CartContext = createContext({} as CartContextProps);
 export const CartContextProvider = ({ children }: ContextProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (count: number) => {
-    console.log(`Item added to the cart: ${count}`);
+  const addToCart = (product: Product, quantity: number) => {
+    console.log(
+      `Item added to the cart: ${product.name} - quantity: ${quantity}`
+    );
+
+    /**
+     * Caso o item já esteja no carrinho ele irá incrementar a quantidade
+     * Caso contrário ele adiciona o produto e a quantidade selecionada
+     */
+
+    const existingItem = cartItems.find(
+      (item) => item.product.id === product.id
+    );
+
+    if (existingItem) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { product, quantity }]);
+    }
   };
+
+  console.log("Cart Items => ", cartItems);
 
   const removeFromCart = () => {
     console.log(`Item added to the cart: `);
