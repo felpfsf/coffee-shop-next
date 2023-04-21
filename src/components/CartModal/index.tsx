@@ -1,3 +1,6 @@
+import { useState } from "react";
+import Image from "next/image";
+import axios from "axios";
 import { useCart } from "../../context/CartContext";
 import { formatCurrency } from "../../utils/formatCurrency";
 import CardCartProduct from "../CardCartProduct";
@@ -7,12 +10,12 @@ import {
   CartItemsContainer,
   CloseButton,
   Content,
+  NoProductsContainer,
   OrderSummary,
   Overlay,
   SubmitOrderButton,
 } from "./style";
-import axios from "axios";
-import { useState } from "react";
+import ShoppingBag from "../../assets/shopping_bag.png";
 
 const CartModal = () => {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
@@ -61,7 +64,10 @@ const CartModal = () => {
             </SubmitOrderButton>
           </>
         ) : (
-          <h1>Não Produtos no carrinho</h1>
+          <NoProductsContainer>
+            <h2>Não há produtos no carrinho</h2>
+            <Image src={ShoppingBag} alt='' width={500} height={700} />
+          </NoProductsContainer>
         )}
         <Dialog.Close asChild>
           <CloseButton>

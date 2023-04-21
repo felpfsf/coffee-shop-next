@@ -28,7 +28,7 @@ export const Content = styled(Dialog.Content, {
   right: 0,
   bottom: 0,
   maxWidth: "28rem",
-  width: "90vw",
+  width: "100%",
   backgroundColor: "$base-card",
   padding: "2rem 1rem",
   animation: `${contentShow} .2 ease-in-out`,
@@ -90,5 +90,30 @@ export const SubmitOrderButton = styled("button", {
   "&:hover": {
     background: "$yellow-dark",
     transition: "all .2s ease-in-out",
+  },
+});
+
+export const NoProductsContainer = styled("div", {
+  padding: "8px",
+  marginTop: "2rem",
+
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+
+  img: {
+    width: "100%",
+    height: "100%",
+    aspectRatio: "1",
+    border: "2px solid $base-button",
+    borderRadius: "100%",
+    padding: "2rem",
+    opacity: 0.5,
+  },
+
+  h2: {
+    fontFamily: "$font-header",
+    fontSize: "$2xl",
+    textAlign: "center",
   },
 });
