@@ -1,8 +1,9 @@
 import { styled } from "../../styles";
 
 export const CartProductContainer = styled("div", {
-  backgroundColor: "$base-card",
+  marginTop: "1rem",
   padding: "8px",
+  backgroundColor: "$base-card",
   display: "flex",
   justifyContent: "space-between",
 });
@@ -12,6 +13,8 @@ export const CardWrapper = styled("div", {
   alignItems: "center",
   gap: "20px",
   h2: {
+    fontSize: "$base",
+    fontWeight: "400",
     marginBottom: "8px",
   },
 });
