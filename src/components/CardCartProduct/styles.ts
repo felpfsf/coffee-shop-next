@@ -41,7 +41,7 @@ export const ActionsContainer = styled("div", {
   },
 });
 
-export const ShoppingCartButton = styled("button", {
+export const RemoveFromCartButton = styled("button", {
   position: "relative",
   lineHeight: 0,
   padding: "0.5rem",

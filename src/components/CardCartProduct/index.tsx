@@ -5,46 +5,63 @@ import {
   ActionsContainer,
   CardWrapper,
   CartProductContainer,
-  ShoppingCartButton,
+  RemoveFromCartButton,
 } from "./styles";
+import { useCart } from "../../context/CartContext";
+import { Product } from "../../utils/types";
 
-interface ProductProps {
-  name: string;
-  imageUrl: string;
+interface ProductProps extends Product {
   quantity: number;
-  price: number;
 }
 
-const CardCartProduct = ({ imageUrl, name, price, quantity }: ProductProps) => {
+const CardCartProduct = (product: ProductProps) => {
+  const { removeFromCart, updateCartItems } = useCart();
+
+  const decrement = () => {
+    const newQuantity = product.quantity - 1;
+    // Caso o valor for reduzido a 0 então o item é removido do carrinho
+    if (newQuantity === 0) {
+      removeFromCart(product);
+    } else {
+      updateCartItems(product.id, newQuantity);
+    }
+  };
+  const increment = () => {
+    const newQuantity = product.quantity + 1;
+    updateCartItems(product.id, newQuantity);
+  };
+  const handleRemoveFromCart = () => {
+    removeFromCart(product);
+  };
   return (
     <CartProductContainer>
       <CardWrapper>
         <Image
-          src={imageUrl}
+          src={product.imageUrl}
           alt={`Imagem de ${name}`}
           width={64}
           height={64}
         />
         <div>
-          <h2>{name}</h2>
+          <h2>{product.name}</h2>
           <ActionsContainer>
             <div>
-              <button>
+              <button onClick={decrement}>
                 <Minus />
               </button>
-              <span>{quantity}</span>
-              <button>
+              <span>{product.quantity}</span>
+              <button onClick={increment}>
                 <Plus />
               </button>
             </div>
-            <ShoppingCartButton>
+            <RemoveFromCartButton onClick={handleRemoveFromCart}>
               <Trash />
               Remover
-            </ShoppingCartButton>
+            </RemoveFromCartButton>
           </ActionsContainer>
         </div>
       </CardWrapper>
-      <strong>{formatCurrency.format(price)}</strong>
+      <strong>{formatCurrency.format(product.price)}</strong>
     </CartProductContainer>
   );
 };
