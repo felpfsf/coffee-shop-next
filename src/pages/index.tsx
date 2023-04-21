@@ -73,8 +73,9 @@ export const getStaticProps: GetStaticProps = async () => {
       name: product.name,
       imageUrl: product.images[0],
       description: product.description,
-      price: (unitAmount / 100),
+      price: unitAmount / 100,
       meta: product.metadata,
+      defaultPriceId: price.id,
     };
   });
   return {
