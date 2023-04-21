@@ -36,6 +36,7 @@ export default async function handler(
     success_url: successUrl,
     cancel_url: cancelUrl,
     line_items: lineItems,
+    billing_address_collection: 'required',
     mode: "payment",
   });
 
