@@ -59,8 +59,12 @@ const CartModal = () => {
               <h1>Total</h1>
               <strong>{formatCurrency.format(subtotal)}</strong>
             </OrderSummary>
-            <SubmitOrderButton onClick={handleFinishCart}>
-              Finalizar Compra
+            <SubmitOrderButton
+              onClick={handleFinishCart}
+              disabled={isCreatingCheckoutSession}
+              isLoading={isCreatingCheckoutSession}
+            >
+              {isCreatingCheckoutSession ? "Carregando..." : "Finalizar Compra"}
             </SubmitOrderButton>
           </>
         ) : (

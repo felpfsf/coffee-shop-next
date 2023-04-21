@@ -1,5 +1,12 @@
+import { ButtonHTMLAttributes, ComponentType } from "react";
 import { keyframes, styled } from "../../styles";
 import * as Dialog from "@radix-ui/react-dialog";
+
+const spin = keyframes({
+  to: {
+    transform: "translate(-50%,-50%) rotate(360deg)",
+  },
+});
 
 const overlayShown = keyframes({
   "0%": { opacity: 0 },
@@ -75,7 +82,14 @@ export const OrderSummary = styled("div", {
   },
 });
 
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  isLoading: boolean;
+};
+
+type ButtonType = ComponentType<ButtonProps>;
+
 export const SubmitOrderButton = styled("button", {
+  position: "relative",
   fontSize: "$sm",
   color: "$white",
   letterSpacing: "1px",
@@ -87,11 +101,46 @@ export const SubmitOrderButton = styled("button", {
   borderRadius: "6px",
   padding: "12px 8px",
   cursor: "pointer",
-  "&:hover": {
+  "&:not(:disabled):hover": {
     background: "$yellow-dark",
     transition: "all .2s ease-in-out",
   },
-});
+  "&:disabled": {
+    opacity: 0.6,
+    cursor: "not-allowed",
+  },
+  "&::before": {
+    position: "absolute",
+    content: "",
+    width: "1.25rem",
+    height: "1.25rem",
+    top: "50%",
+    left: "30%",
+    transform: "translate(-50%, -50%)",
+    border: "2px solid $white",
+    borderTop: "transparent",
+    borderRadius: "100%",
+    animation: `${spin} .8s linear infinite`,
+    pointerEvents: "none",
+  },
+  variants: {
+    isLoading: {
+      true: {
+        "&:before": {
+          opacity: 1,
+        },
+      },
+      false: {
+        "&:before": {
+          opacity: 0,
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    isLoading: false,
+  },
+})<{}, ButtonType>;
 
 export const NoProductsContainer = styled("div", {
   padding: "8px",
