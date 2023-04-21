@@ -16,6 +16,7 @@ interface CartContextProps {
   cartItems: CartItem[];
   addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (product: Product) => void;
+  updateCartItems: (productId: string, newQuantity: number) => void;
 }
 
 interface ContextProviderProps {
@@ -28,15 +29,13 @@ export const CartContextProvider = ({ children }: ContextProviderProps) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addToCart = (product: Product, quantity: number) => {
-    console.log(
-      `Item added to the cart: ${product.name} - quantity: ${quantity}`
-    );
-
+    // console.log(
+    //   `Item added to the cart: ${product.name} - quantity: ${quantity}`
+    // );
     /**
      * Caso o item já esteja no carrinho ele irá incrementar a quantidade
      * Caso contrário ele adiciona o produto e a quantidade selecionada
      */
-
     const existingItem = cartItems.find(
       (item) => item.product.id === product.id
     );
@@ -54,16 +53,31 @@ export const CartContextProvider = ({ children }: ContextProviderProps) => {
     }
   };
 
-  console.log("Cart Items => ", cartItems);
+  const removeFromCart = (product: Product) => {
+    // console.log(`Item removed from cart`);
+    setCartItems(cartItems.filter((item) => item.product.id !== product.id));
+  };
 
-  const removeFromCart = () => {
-    console.log(`Item added to the cart: `);
+  const updateCartItems = (productId: string, newQuantity: number) => {
+    /**
+     * Atualiza a quantidade de itens de um produto no carrinho
+     * passando um novo valor(newQuantity) incrementando ou decrementando
+     * o valor atual de quantity
+     */
+    setCartItems(
+      cartItems.map((item) =>
+        item.product.id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
   };
 
   const values = {
     cartItems,
     addToCart,
     removeFromCart,
+    updateCartItems,
   };
   return <CartContext.Provider value={values}>{children}</CartContext.Provider>;
 };
