@@ -11,16 +11,36 @@ import {
   Overlay,
   SubmitOrderButton,
 } from "./style";
+import axios from "axios";
+import { useState } from "react";
 
 const CartModal = () => {
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false);
   const { cartItems } = useCart();
-  const subtotal = cartItems.reduce((sum, item) => {
-    return sum + item.quantity * Number(item.product.price);
-  }, 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.quantity * item.product.price,
+    0
+  );
+  const handleFinishCart = async () => {
+    try {
+      setIsCreatingCheckoutSession(true);
+      const response = await axios.post("/api/checkout", {
+        cartItems,
+      });
+      const checkoutUrl = response.data.checkoutUrl;
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      setIsCreatingCheckoutSession(false);
+      alert("Falha ao redirecionar");
+      console.error(error);
+    }
+  };
   return (
     <Dialog.Portal>
       <Overlay />
       <Content>
+        <h1>Seu Carrinho:</h1>
         {cartItems.length > 0 ? (
           <>
             <CartItemsContainer>
@@ -36,7 +56,9 @@ const CartModal = () => {
               <h1>Total</h1>
               <strong>{formatCurrency.format(subtotal)}</strong>
             </OrderSummary>
-            <SubmitOrderButton>Finalizar Compra</SubmitOrderButton>
+            <SubmitOrderButton onClick={handleFinishCart}>
+              Finalizar Compra
+            </SubmitOrderButton>
           </>
         ) : (
           <h1>Não Produtos no carrinho</h1>
