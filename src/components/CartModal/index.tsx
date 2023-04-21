@@ -1,35 +1,46 @@
-import * as Dialog from "@radix-ui/react-dialog";
-import { CloseButton, Content, Overlay } from "./style";
-import { XCircle } from "@phosphor-icons/react";
 import { useCart } from "../../context/CartContext";
+import { formatCurrency } from "../../utils/formatCurrency";
+import CardCartProduct from "../CardCartProduct";
+import * as Dialog from "@radix-ui/react-dialog";
+import { XCircle } from "@phosphor-icons/react";
+import {
+  CartItemsContainer,
+  CloseButton,
+  Content,
+  OrderSummary,
+  Overlay,
+  SubmitOrderButton,
+} from "./style";
 
 const CartModal = () => {
   const { cartItems } = useCart();
-  /**
-   * TODO:
-   *
-   * [x] - SOMAR O VALOR TOTAL DE PRODUTOS
-   *
-   * [] - EXIBIR O CARD COM BOTÕES DE ADICIONAR MAIS ITENS
-   *      E REMOVER DO CARRINHO
-   */
   const subtotal = cartItems.reduce((sum, item) => {
     return sum + item.quantity * Number(item.product.price);
   }, 0);
-  console.log(cartItems.map(item => item.product.price))
-  console.log(subtotal)
   return (
     <Dialog.Portal>
       <Overlay />
       <Content>
-        <h1>CartModal</h1>
-        <div>
-          {cartItems.map((item) => (
-            <p key={item.product.id}>
-              {item.product.name} unidades:<span>{item.quantity}</span>
-            </p>
-          ))}
-        </div>
+        {cartItems.length > 0 ? (
+          <>
+            <CartItemsContainer>
+              {cartItems.map((item) => (
+                <CardCartProduct
+                  key={item.product.id}
+                  {...item.product}
+                  quantity={item.quantity}
+                />
+              ))}
+            </CartItemsContainer>
+            <OrderSummary>
+              <h1>Total</h1>
+              <strong>{formatCurrency.format(subtotal)}</strong>
+            </OrderSummary>
+            <SubmitOrderButton>Finalizar Compra</SubmitOrderButton>
+          </>
+        ) : (
+          <h1>Não Produtos no carrinho</h1>
+        )}
         <Dialog.Close asChild>
           <CloseButton>
             <XCircle size={24} weight='fill' />

@@ -29,8 +29,8 @@ export const Content = styled(Dialog.Content, {
   bottom: 0,
   maxWidth: "28rem",
   width: "90vw",
-  backgroundColor: "$background",
-  padding: '2rem 1rem',
+  backgroundColor: "$base-card",
+  padding: "2rem 1rem",
   animation: `${contentShow} .2 ease-in-out`,
   boxShadow:
     "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
@@ -43,5 +43,52 @@ export const CloseButton = styled("button", {
   position: "absolute",
   top: "16px",
   right: "16px",
-  color:'$yellow'
+  color: "$yellow",
+  "&:hover": {
+    color: "$yellow-dark",
+    transition: "color .2s ease-in-out",
+  },
+});
+
+export const CartItemsContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "24px",
+  "& > *:not(:last-child)": {
+    borderBottom: "1px solid $base-button",
+    paddingBottom: "24px",
+  },
+});
+
+export const OrderSummary = styled("div", {
+  marginTop: "24px",
+  borderTop: "1px solid $base-button",
+  padding: "24px 8px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  h1: {
+    fontSize: "$lg",
+  },
+  strong: {
+    fontSize: "$lg",
+  },
+});
+
+export const SubmitOrderButton = styled("button", {
+  fontSize: "$sm",
+  color: "$white",
+  letterSpacing: "1px",
+  fontWeight: "bold",
+  lineHeight: 1.6,
+  textTransform: "uppercase",
+  width: "100%",
+  background: "$yellow",
+  borderRadius: "6px",
+  padding: "12px 8px",
+  cursor: "pointer",
+  "&:hover": {
+    background: "$yellow-dark",
+    transition: "all .2s ease-in-out",
+  },
 });
