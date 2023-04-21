@@ -2,7 +2,8 @@ export interface Product {
   id: string;
   name: string;
   imageUrl: string;
-  description: string;
+  description?: string;
   price: number;
-  meta: { [key: string]: string }[];
+  meta?: { [key: string]: string }[];
+  defaultPriceId?: string;
 }
