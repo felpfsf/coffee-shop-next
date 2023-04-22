@@ -1,38 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Coffee Shop Next
 
-## Getting Started
+Este é um projeto didático que apresenta um e-commerce fictício de uma loja de café, utilizando a API do Stripe para catalogar os produtos e finalizar as compras. O projeto foi desenvolvido com as tecnologias NextJS 13 e TypeScript, com práticas de Context API e useReducer. Para a estilização, foi utilizado o framework de CSS Stitches e elementos do Radix UI.
 
-First, run the development server:
+## Como rodar o projeto
+
+Para rodar o projeto localmente, siga os seguintes passos:
+
+1. Clone este repositório para sua máquina.
+2. Instale as dependências do projeto com o comando `yarn`.
+3. Crie um arquivo `.env.local` na raiz do projeto e preencha as variáveis de ambiente necessárias seguindo como exemplo o arquivo `.env.example`
+4. Rode o projeto com o comando `yarn dev`.
+5. Acesse a aplicação no endereço `http://localhost:3000`.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+NEXT_URL=http://localhost:3000/api
+STRIPE_PUBLIC_KEY=<sua chave pública do Stripe>
+STRIPE_SECRET_KEY=<sua chave secreta do Stripe>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+A aplicação apresenta as seguintes funcionalidades:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Catálogo de produtos;
+- Carrinho de compras;
+- Finalização de compra com pagamento via Stripe;
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Telas da aplicação
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Abaixo, estão algumas telas da aplicação:
 
-## Learn More
+### Tela de catálogo de produtos
 
-To learn more about Next.js, take a look at the following resources:
+![Tela de catálogo de produtos](https://i.imgur.com/2QdtRzR.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Tela de carrinho de compras
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Tela de carrinho de compras](https://i.imgur.com/w4pC80V.png)
 
-## Deploy on Vercel
+### Tela de finalização de compra
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Tela de finalização de compra](https://i.imgur.com/fBtzJLl.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tecnologias utilizadas
+
+- NextJS 13
+- TypeScript
+- Stitches
+- Radix UI
+- Stripe API
+
+## Considerações finais
+
+Este é um projeto didático, portanto, a implementação não contempla todos os casos de uso e possíveis problemas que podem surgir em uma aplicação real. No entanto, ele serve como um bom ponto de partida para quem está aprendendo a utilizar as tecnologias apresentadas.
