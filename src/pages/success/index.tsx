@@ -39,7 +39,7 @@ const Success = ({ customerAddress, customerName, products }: SuccessProps) => {
             <p>
               Entrega em{" "}
               <strong>
-                {`${customerAddress.line1}, ${customerAddress.line2} - ${customerAddress.city}`}
+                {`${customerAddress.line1}, ${customerAddress.line2 && customerAddress.line2} - ${customerAddress.city}`}
               </strong>
             </p>
           </div>
